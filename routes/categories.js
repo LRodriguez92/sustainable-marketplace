@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const categoryController = require('../controllers/category');
-const auth = require('../middleware/auth');
+const { auth } = require('../middleware/auth');
 
 // Get all categories
 router.get('', auth, categoryController.getAllCategories);

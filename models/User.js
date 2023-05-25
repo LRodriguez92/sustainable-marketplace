@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+  isSeller: {
+    type: Boolean,
+    default: false
+  },
+  seller: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Seller'
+  },
   username: {
     type: String,
     required: true,

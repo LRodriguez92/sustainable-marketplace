@@ -3,7 +3,8 @@ const Product = require('../models/Product');
 // Create new product
 const createProduct = async (req, res) => {
   try {
-    const product = new Product(req.body);
+      req.body.seller = req.userId;
+      const product = new Product(req.body);
     await product.save();
     res.status(201).json(product);
   } catch (error) {
@@ -24,7 +25,7 @@ const getAllProducts = async (req, res) => {
 // Get a specific product by id
 const getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).populate('seller');
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
