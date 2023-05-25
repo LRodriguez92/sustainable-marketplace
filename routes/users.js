@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user');
 const { auth } = require('../middleware/auth');
-console.log(userController);
-console.log(auth);
 
 // Get all users data
 router.get('', auth, userController.getUsers);
