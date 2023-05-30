@@ -54,9 +54,24 @@ const deleteUser = async (req, res) => {
   }
 };
 
+// Make user a seller
+const makeUserSeller = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.userId, { isSeller: true }, { new: true });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error making user a seller:', error);
+    res.status(500).json({ message: 'An error occurred' });
+  }
+};
+
 module.exports = {
   getUsers,
   getUser,
   updateUser,
   deleteUser,
+  makeUserSeller
 };

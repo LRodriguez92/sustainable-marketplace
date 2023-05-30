@@ -15,4 +15,7 @@ router.put('/:id', auth, userController.updateUser);
 // Delete user
 router.delete('/:id', auth, userController.deleteUser);
 
+// Make user a seller
+router.put('/:id/seller', auth, userController.makeUserSeller);
+
 module.exports = router;
